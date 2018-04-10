@@ -22,4 +22,4 @@
 hs_err_pid*
 
 # the modules controlled by the package.json and package-lock.json files
-/node_modules/*.*
+node_modules/*.*
