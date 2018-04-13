@@ -1,43 +1,59 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8" />
-    <title>Making your first Phaser 3 Game - Part 1</title>
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.3.0/dist/phaser.js"></script>
-    <style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Making your first Phaser 3 Game - Part 1</title>
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.3.0/dist/phaser.js"></script>
+  <style type="text/css">
+    body {
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
 
 <script type="text/javascript">
-
-    var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        scene: {
-            preload: preload,
-            create: create,
-            update: update
-        }
-    };
-
-    var game = new Phaser.Game(config);
-
-    function preload ()
-    {
+  // using literal  object notation to create the config  object
+  var config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    scene: {
+      preload: preload,
+      create: create,
+      update: update
     }
+  };
+  // this is the heart of the game
+  // this is  not a local variable
+  var game = new Phaser.Game(config);
 
-    function create ()
-    {
-    }
+  // this function  loads assets
+  function preload() {
+    this.load.image('sky', 'assets/sky.png');
+    this.load.image('ground', 'assets/platform.png');
+    this.load.image('star', 'assets/star.png');
+    this.load.image('bomb', 'assets/bomb.png');
+    this.load.spritesheet('dude',
+        'assets/dude.png',
+        {frameWidth: 32, frameHeight: 48}
+    );
 
-    function update ()
-    {
-    }
+  }
+
+  // this function  makes the assets loaded in the preload()
+  // visible and accessable
+  // note the order  of the add statements is the order the assets are
+  // created and displayed
+  function create() {
+    // Under the hood this.add.image is creating a new
+    // Image Game Object and adding it to the current Scenes display list.
+    this.add.image(400, 300, 'sky');
+    this.add.image(400, 300, 'star');
+  }
+
+  function update() {
+  }
 
 </script>
 
