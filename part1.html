@@ -18,6 +18,13 @@
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    physics: {
+      default: 'arcade',
+      arcade: {
+        gravity: { y: 300 },
+        debug: false
+      }
+    },
     scene: {
       preload: preload,
       create: create,
@@ -45,11 +52,18 @@
   // visible and accessable
   // note the order  of the add statements is the order the assets are
   // created and displayed
+  var platforms;
   function create() {
     // Under the hood this.add.image is creating a new
     // Image Game Object and adding it to the current Scenes display list.
     this.add.image(400, 300, 'sky');
-    this.add.image(400, 300, 'star');
+    platforms = this.physics.add.staticGroup();
+    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
+    platforms.create(600, 400, 'ground');
+    platforms.create(50, 250, 'ground');
+    platforms.create(750, 220, 'ground');
+
   }
 
   function update() {
@@ -59,3 +73,4 @@
 
 </body>
 </html>
+                                                      ``
